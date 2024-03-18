@@ -1,0 +1,79 @@
+{
+  "name": "chakraui-modal-wrapper",
+  "version": "1.0.0",
+  "description": "A simple Wrapper for the Chakra UI Modal. Made as I wanted to simplify the Modal component which I used extensively in my code.",
+  "main": "dist/cjs/index.js",
+  "type": "module",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "rollup": "rollup -c",
+    "test": "jest",
+    "tsc": "tsc",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joshua-Augment/chakraui-modal-wrapper.git"
+  },
+  "keywords": [
+    "chakra",
+    "modal",
+    "react"
+  ],
+  "author": "joshuajs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joshua-Augment/chakraui-modal-wrapper/issues"
+  },
+  "homepage": "https://github.com/Joshua-Augment/chakraui-modal-wrapper#readme",
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@chakra-ui/react": "^2.8.2",
+    "@chromatic-com/storybook": "^1.2.22",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/addon-interactions": "^8.0.0",
+    "@storybook/addon-links": "^8.0.0",
+    "@storybook/addon-onboarding": "^8.0.0",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
+    "@storybook/blocks": "^8.0.0",
+    "@storybook/react": "^8.0.0",
+    "@storybook/react-webpack5": "^8.0.0",
+    "@storybook/test": "^8.0.0",
+    "@testing-library/react": "^14.2.1",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.66",
+    "babel-jest": "^29.7.0",
+    "framer-motion": "^11.0.14",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "react": "^18.2.0",
+    "rollup": "^4.13.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-filesize": "^10.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "storybook": "^8.0.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^11.0.14",
+    "react": "^18.2.0"
+  }
+}
