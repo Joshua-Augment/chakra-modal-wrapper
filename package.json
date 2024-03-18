@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Joshua-Augment/chakraui-modal-wrapper.git"
+    "url": "git+https://github.com/Joshua-Augment/chakra-modal-wrapper.git"
   },
   "keywords": [
     "chakra",
@@ -28,9 +28,9 @@
   "author": "joshuajs",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Joshua-Augment/chakraui-modal-wrapper/issues"
+    "url": "https://github.com/Joshua-Augment/chakra-modal-wrapper/issues"
   },
-  "homepage": "https://github.com/Joshua-Augment/chakraui-modal-wrapper#readme",
+  "homepage": "https://github.com/Joshua-Augment/chakra-modal-wrapper#readme",
   "devDependencies": {
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
