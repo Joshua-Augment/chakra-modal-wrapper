@@ -1,6 +1,6 @@
 {
   "name": "chakraui-modal-wrapper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple Wrapper for the Chakra UI Modal. Made as I wanted to simplify the Modal component which I used extensively in my code.",
   "main": "dist/cjs/index.js",
   "type": "module",
