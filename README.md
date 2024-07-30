@@ -31,6 +31,13 @@ hideOverlay | boolean | Hides Overlay (Overlay shown by default)
 elementProps| Object <table><thead><tr><th>Element</th><th>Type</th></tr></thead><tbody><tr><th>closeButtonProps</th><td>`Partial<ModalCloseButtonProps>`</td></tr><tr><th>overlayProps</th><td>`Partial<ModalOverlayProps>`</td></tr><tr><th>contentProps</th><td>`Partial<ModalContentProps>`</td></tr><tr><th>bodyProps</th><td>`Partial<ModalBodyProps>`</td></tr><tr><th>headerProps</th><td>`Partial<ModalHeaderProps>`</td></tr><tr><th>footerProps</th><td>`Partial<ModalFooterProps>`</td></tr></tbody></table> |Props for the Chakra UI Elements |
 elementRefs | Object <table><thead><tr><th>Element</th><th>Type</th></tr></thead><tbody><tr><th>closeButtonRef</th><td>`RefObject<HTMLButtonElement>`</td></tr><tr><th>overlayRef</th><td>`RefObject<HTMLDivElement>`</td></tr><tr><th>contentRef</th><td>`RefObject<HTMLDivElement>`</td></tr><tr><th>bodyRef</th><td>`RefObject<HTMLDivElement>`</td></tr><tr><th>headerRef</th><td>`RefObject<HTMLDivElement>`</td></tr><tr><th>footerRef</th><td>`RefObject<HTMLDivElement>`</td></tr></tbody></table> | Refs for the Chakra UI Elements
 
+`<SimpleModalButton>` has the same props as `<SimpleModal>` with the addition of
+| Props | Type | Description |
+---|---|---|
+buttonTitle|React.ReactNode|Title for Button |
+buttonProps|ButtonProps|Props for Button|
+buttonComponent|React.FC<{ ...buttonProps, children: React.ReactNode, onClick : /*on Open function, so use this to open the modal*/}>|Replaces the Button with another element
+
 ## Usage
 ### Basic Usage
 ```jsx
@@ -58,9 +65,34 @@ const MyModalPage = () => {
 }
 ```
 
+```jsx
+import {SimpleModalButton} from "chakraui-modal-wrapper"
+
+const MyModalPage = () => {
+  // No need onDisclosure as the button is already 
+  // added to the component
+  
+  return <SimpleModalButton 
+      size="4xl" // Extends ModalProps, autocomplete is included
+      p={4} // Extends ModalProps
+      // Use a ReactNode
+      title="Modal Title"
+      // Use a ReactNode
+      body={<div>
+        <p>My Modal Body</p>
+      </div>}
+      buttonTitle="Open Modal"
+      buttonProps={{
+        p: 4,
+        colorScheme: "blue" // All the ButtonProps for Chakra
+      }}
+    />
+}
+```
+
 ### Changing the Size / Using ModalProps
 ```jsx
-import {SimpleModal} from "chakraui-modal-wrapper"
+import {SimpleModalButton} from "chakraui-modal-wrapper"
 
 const MyModalPage = () => {
   // Use a state or useDisclosure since this is
@@ -69,7 +101,7 @@ const MyModalPage = () => {
   
   return <div>
     <button onClick={onOpen}>Open Modal</button>
-    <SimpleModal 
+    <SimpleModalButton 
       size="4xl" // Extends ModalProps, autocomplete is included
       p={4} // Extends ModalProps
       isOpen={isOpen}
@@ -147,5 +179,33 @@ const MyModalPage = () => {
       isOpen
     />
   </div>
+}
+```
+
+### Using a Custom Button with the Simple Modal
+
+```jsx
+import {SimpleModalButton, ButtonElementProps} from "chakraui-modal-wrapper"
+
+const CustomButton = (props: ButtonElementProps) => {
+  return <CustomButton onClick={props.onClick} {...props} />
+}
+
+const MyModalPage = () => {
+  // No need onDisclosure as the button is already 
+  // added to the component
+  
+  return <SimpleModalButton 
+      size="4xl" // Extends ModalProps, autocomplete is included
+      p={4} // Extends ModalProps
+      // Use a ReactNode
+      title="Modal Title"
+      // Use a ReactNode
+      body={<div>
+        <p>My Modal Body</p>
+      </div>}
+      buttonTitle="Open Modal"
+      buttonElement={CustomButton}
+    />
 }
 ```
