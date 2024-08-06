@@ -32,4 +32,13 @@ interface ISimpleModal extends Omit<ModalProps, "children" | "isOpen" | "onClose
     }>;
 }
 declare const SimpleModalButton: (props: ISimpleModal) => import("react/jsx-runtime").JSX.Element;
+export declare const useSimpleModalButton: () => {
+    isOpen: boolean;
+    onOpen: () => void;
+    onClose: () => void;
+    onToggle: () => void;
+    isControlled: boolean;
+    getButtonProps: (props?: any) => any;
+    getDisclosureProps: (props?: any) => any;
+};
 export default SimpleModalButton;

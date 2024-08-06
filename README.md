@@ -38,6 +38,10 @@ buttonTitle|React.ReactNode|Title for Button |
 buttonProps|ButtonProps|Props for Button|
 buttonComponent|React.FC<{ ...buttonProps, children: React.ReactNode, onClick : /*on Open function, so use this to open the modal*/}>|Replaces the Button with another element
 
+*Note : When using SimpleModalButton you may access the useDisclosure methods used for the button using the 
+`useSimpleModalButton()` hook. It provides the methods of the 
+useDisclosure that the current Modal Context uses.*
+
 ## Usage
 ### Basic Usage
 ```jsx
@@ -207,5 +211,35 @@ const MyModalPage = () => {
       buttonTitle="Open Modal"
       buttonElement={CustomButton}
     />
+}
+```
+
+### Using the useSimpleModalButton to control modal
+
+```jsx
+import {SimpleModalButton, useSimpleModalButton} from "chakraui-modal-wrapper"
+
+const MyModalPage = () => {
+  // No need onDisclosure as the button is already 
+  // added to the component
+  
+  return <SimpleModalButton 
+      size="4xl" // Extends ModalProps, autocomplete is included
+      p={4} // Extends ModalProps
+      // Use a ReactNode
+      title="Modal Title"
+      // Use a ReactNode
+      body={<MyComponent />}
+      buttonTitle="Open Modal"
+    />
+}
+
+const MyComponent = () => {
+  const {isOpen, onClose} = useSimpleModalButton()
+
+  return <div>
+    {isOpen ? "Modal is Open" : "Modal is Closed"}
+    <button onClick={onClose}>Close Modal</button>
+  </div>
 }
 ```

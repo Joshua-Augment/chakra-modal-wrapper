@@ -1,2 +1,2 @@
 export {default} from "./SimpleModalButton"
-export {ButtonElementProps} from "./SimpleModalButton"
+export {useSimpleModalButton, ButtonElementProps} from "./SimpleModalButton"

@@ -17,9 +17,9 @@ import {
   ModalProps,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { RefObject } from "react";
+import React, { createContext, RefObject, useContext } from "react";
 
-export type ButtonElementProps = { children: React.ReactNode; buttonTitle: React.ReactNode, onClick: ()=>void }
+export type ButtonElementProps = { children: React.ReactNode; buttonTitle: React.ReactNode; onClick: () => void };
 
 interface ISimpleModal extends Omit<ModalProps, "children" | "isOpen" | "onClose"> {
   buttonTitle: React.ReactNode;
@@ -48,15 +48,36 @@ interface ISimpleModal extends Omit<ModalProps, "children" | "isOpen" | "onClose
   }>;
 }
 
-const SimpleModalButton = (props: ISimpleModal) => {
-  const {isOpen, onClose, onOpen} = useDisclosure()
-  const { title, body, footer, hideOverlay, hideCloseButton, elementProps, elementRefs, buttonElement, buttonProps, buttonTitle, ...modalProps } = props;
+const ModalContext = createContext<{
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  onToggle: () => void;
+  isControlled: boolean;
+  getButtonProps: (props?: any) => any;
+  getDisclosureProps: (props?: any) => any;
+}>({
+  isOpen: false,
+  onOpen: () => {},
+  onClose: () => {},
+  onToggle: () => {},
+  isControlled: false,
+  getButtonProps: (props?: any) => ({}),
+  getDisclosureProps: (props?: any) => ({}),
+});
 
-  const ButtonComponent = buttonElement ?? Button
+const SimpleModalButton = (props: ISimpleModal) => {
+  const { isOpen, onClose, onOpen, ...rest } = useDisclosure();
+  const { title, body, footer, hideOverlay, hideCloseButton, elementProps, elementRefs, buttonElement, buttonProps, buttonTitle, ...modalProps } =
+    props;
+
+  const ButtonComponent = buttonElement ?? Button;
 
   return (
-    <>
-      <ButtonComponent {...buttonProps} buttonTitle={buttonTitle} onClick={onOpen} >{buttonTitle}</ButtonComponent>
+    <ModalContext.Provider value={{isOpen, onClose, onOpen, ...rest}}>
+      <ButtonComponent {...buttonProps} buttonTitle={buttonTitle} onClick={onOpen}>
+        {buttonTitle}
+      </ButtonComponent>
       <Modal isOpen={isOpen} onClose={onClose} {...modalProps}>
         {hideOverlay !== true && <ModalOverlay ref={elementRefs?.overlayRef} {...elementProps?.overlayProps} />}
         <ModalContent ref={elementRefs?.contentRef} {...elementProps?.contentProps}>
@@ -79,8 +100,10 @@ const SimpleModalButton = (props: ISimpleModal) => {
           )}
         </ModalContent>
       </Modal>
-    </>
+    </ModalContext.Provider>
   );
 };
+
+export const useSimpleModalButton = () => useContext(ModalContext)
 
 export default SimpleModalButton;
